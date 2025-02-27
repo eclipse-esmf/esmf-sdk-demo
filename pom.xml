@@ -20,16 +20,16 @@
       <esmf-sdk.version>2.9.10</esmf-sdk.version>
 
       <!-- Test dependencies -->
-      <assertj-core.version>3.26.3</assertj-core.version>
-      <junit-jupiter.version>5.11.3</junit-jupiter.version>
-      <wiremock.version>3.9.2</wiremock.version>
+      <assertj-core.version>3.27.3</assertj-core.version>
+      <junit-jupiter.version>5.12.0</junit-jupiter.version>
+      <wiremock.version>3.12.0</wiremock.version>
 
       <!-- Plugin versions -->
       <build-helper-maven-plugin.version>3.6.0</build-helper-maven-plugin.version>
-      <maven-clean-plugin.version>3.4.0</maven-clean-plugin.version>
+      <maven-clean-plugin.version>3.4.1</maven-clean-plugin.version>
       <maven-scm-plugin.version>2.1.0</maven-scm-plugin.version>
-      <openapi-generator-maven-plugin.version>7.9.0</openapi-generator-maven-plugin.version>
-      <versions-maven-plugin.version>2.17.1</versions-maven-plugin.version>
+      <openapi-generator-maven-plugin.version>7.11.0</openapi-generator-maven-plugin.version>
+      <versions-maven-plugin.version>2.18.0</versions-maven-plugin.version>
    </properties>
 
    <dependencies>
