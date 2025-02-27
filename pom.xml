@@ -17,12 +17,11 @@
       <generated-sources>${project.basedir}/src-gen</generated-sources>
 
       <!-- Regular dependencies -->
-      <esmf-sdk.version>2.9.7</esmf-sdk.version>
+      <esmf-sdk.version>2.9.10</esmf-sdk.version>
 
       <!-- Test dependencies -->
       <assertj-core.version>3.26.3</assertj-core.version>
       <junit-jupiter.version>5.11.3</junit-jupiter.version>
-      <jackson.version>2.18.1</jackson.version>
       <wiremock.version>3.9.2</wiremock.version>
 
       <!-- Plugin versions -->
@@ -67,12 +66,6 @@
          <version>${assertj-core.version}</version>
          <scope>test</scope>
       </dependency>
-      <dependency>
-         <groupId>com.fasterxml.jackson.core</groupId>
-         <artifactId>jackson-databind</artifactId>
-         <version>${jackson.version}</version>
-         <scope>test</scope>
-      </dependency>
    </dependencies>
 
    <build>
@@ -115,13 +108,6 @@
             <groupId>org.eclipse.esmf</groupId>
             <artifactId>esmf-aspect-model-maven-plugin</artifactId>
             <version>${esmf-sdk.version}</version>
-            <dependencies>
-               <dependency>
-                  <groupId>com.fasterxml.jackson.core</groupId>
-                  <artifactId>jackson-databind</artifactId>
-                  <version>${jackson.version}</version>
-               </dependency>
-            </dependencies>
             <configuration>
                <modelsRootDirectory>${project.basedir}/sldt-semantic-models</modelsRootDirectory>
                <outputDirectory>${generated-sources}/main/java</outputDirectory>
