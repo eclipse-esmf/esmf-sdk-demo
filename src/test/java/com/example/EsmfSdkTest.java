@@ -10,9 +10,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.Locale;
-import java.util.Map;
 
 import org.eclipse.esmf.aspectmodel.generator.docu.AspectModelDocumentationGenerator;
+import org.eclipse.esmf.aspectmodel.generator.docu.DocumentationGenerationConfig;
+import org.eclipse.esmf.aspectmodel.generator.docu.DocumentationGenerationConfigBuilder;
 import org.eclipse.esmf.aspectmodel.generator.json.AspectModelJsonPayloadGenerator;
 import org.eclipse.esmf.aspectmodel.jackson.AspectModelJacksonModule;
 import org.eclipse.esmf.aspectmodel.loader.AspectModelLoader;
@@ -160,13 +161,13 @@ public class EsmfSdkTest {
       final Aspect aspect = aspectModel.aspects().stream().filter( a -> a.urn().equals( aspectUrn ) ).findFirst().orElseThrow();
 
       // Generate HTML documentation
-      final AspectModelDocumentationGenerator generator = new AspectModelDocumentationGenerator( aspect );
       final File output = new File( System.getProperty( "user.dir" ) ).toPath()
             .resolve( "target" )
             .resolve( "PartAsPlanned.html" )
             .toFile();
+      final DocumentationGenerationConfig config = DocumentationGenerationConfigBuilder.builder().locale( Locale.ENGLISH ).build();
       try ( final FileOutputStream outputStream = new FileOutputStream( output ) ) {
-         generator.generate( htmlFileName -> outputStream, Map.of(), Locale.ENGLISH );
+         new AspectModelDocumentationGenerator( aspect, config ).generate( htmlFileName -> outputStream );
       }
       assertThat( output ).exists();
       assertThat( output ).isFile();
