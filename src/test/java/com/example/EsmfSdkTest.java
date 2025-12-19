@@ -98,7 +98,7 @@ public class EsmfSdkTest {
 
       try ( final InputStream input = new FileInputStream( file ) ) {
          assertThatCode( () -> {
-            final AspectModel aspectModel = new AspectModelLoader( FILE_SYSTEM_STRATEGY ).load( input );
+            final AspectModel aspectModel = new AspectModelLoader( FILE_SYSTEM_STRATEGY ).load( input, file.toURI() );
             assertThat( aspectModel.aspects() ).isNotEmpty();
          } ).doesNotThrowAnyException();
       }
