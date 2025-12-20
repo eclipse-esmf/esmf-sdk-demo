@@ -98,7 +98,7 @@ public class EsmfSdkTest {
 
       try ( final InputStream input = new FileInputStream( file ) ) {
          assertThatCode( () -> {
-            final AspectModel aspectModel = new AspectModelLoader( FILE_SYSTEM_STRATEGY ).load( input );
+            final AspectModel aspectModel = new AspectModelLoader( FILE_SYSTEM_STRATEGY ).load( input, file.toURI() );
             assertThat( aspectModel.aspects() ).isNotEmpty();
          } ).doesNotThrowAnyException();
       }
@@ -110,7 +110,7 @@ public class EsmfSdkTest {
     * type-safe representation (i.e., an object of type PartAsPlanned). Note that the PartAsPlanned class is
     * generated during build time (see "generate-java-classes" in pom.xml).
     * See <a
-    * href="https://eclipse-esmf.github.io/esmf-developer-guide/tooling-guide/java-aspect-tooling.html#generating-sample-json-payload">
+    * href="https://eclipse-esmf.github.io/esmf-developer-guide/tooling-guide/java-documentation-generation.html#generating-sample-json-payload">
     * Generating Sample JSON Payload</a> for more information.
     */
    @Test
