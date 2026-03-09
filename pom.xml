@@ -11,27 +11,27 @@
 
    <properties>
       <!-- General settings -->
-      <maven.compiler.source>21</maven.compiler.source>
-      <maven.compiler.target>21</maven.compiler.target>
+      <maven.compiler.source>25</maven.compiler.source>
+      <maven.compiler.target>25</maven.compiler.target>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <generated-sources>${project.basedir}/src-gen</generated-sources>
 
       <!-- Regular dependencies -->
-      <esmf-sdk.version>2.13.0</esmf-sdk.version>
+      <esmf-sdk.version>2.14.2</esmf-sdk.version>
       <jakarta-validation-api.version>3.1.1</jakarta-validation-api.version>
-      <commons-io.version>2.19.0</commons-io.version>
+      <commons-io.version>2.21.0</commons-io.version>
 
       <!-- Test dependencies -->
-      <assertj-core.version>3.27.3</assertj-core.version>
-      <junit-jupiter.version>5.13.3</junit-jupiter.version>
-      <wiremock.version>3.13.1</wiremock.version>
+      <assertj-core.version>3.27.7</assertj-core.version>
+      <junit-jupiter.version>6.0.3</junit-jupiter.version>
+      <wiremock.version>3.13.2</wiremock.version>
 
       <!-- Plugin versions -->
       <build-helper-maven-plugin.version>3.6.1</build-helper-maven-plugin.version>
       <maven-clean-plugin.version>3.5.0</maven-clean-plugin.version>
-      <maven-scm-plugin.version>2.1.0</maven-scm-plugin.version>
-      <openapi-generator-maven-plugin.version>7.14.0</openapi-generator-maven-plugin.version>
-      <versions-maven-plugin.version>2.18.0</versions-maven-plugin.version>
+      <maven-scm-plugin.version>2.2.1</maven-scm-plugin.version>
+      <openapi-generator-maven-plugin.version>7.20.0</openapi-generator-maven-plugin.version>
+      <versions-maven-plugin.version>2.21.0</versions-maven-plugin.version>
    </properties>
 
    <!-- Add the esmf-sdk BOM to make the esmf-* dependencies available -->

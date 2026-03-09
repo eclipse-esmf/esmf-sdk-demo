@@ -6,7 +6,8 @@ Demo code and generation of artifacts uses
 the [PartAsPlanned 2.0.0](https://github.com/eclipse-tractusx/sldt-semantic-models/blob/main/io.catenax.part_as_planned/2.0.0/PartAsPlanned.ttl)
 Aspect Model as defined by the Tractus-X project.
 
-To run all generation steps and tests, run `mvn clean test`.
+To run all generation steps and tests, run `mvn clean test`. The project
+requires at least Java 25.
 
 ## Generation of artifacts using the Maven Plugin
 
