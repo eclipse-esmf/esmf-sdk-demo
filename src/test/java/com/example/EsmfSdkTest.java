@@ -26,17 +26,16 @@ import org.eclipse.esmf.metamodel.ModelElement;
 import org.eclipse.esmf.staticmetamodel.constraint.StaticConstraintProperty;
 import org.eclipse.esmf.staticmetamodel.propertychain.PropertyChain;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import io.catenax.part_as_planned.MetaPartAsPlanned;
 import io.catenax.part_as_planned.MetaPartTypeInformationEntity;
 import io.catenax.part_as_planned.PartAsPlanned;
 import io.catenax.part_as_planned.PartTypeInformationEntity;
 import org.junit.jupiter.api.Test;
+import tools.jackson.core.StreamReadFeature;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.SerializationFeature;
+import tools.jackson.databind.cfg.DateTimeFeature;
+import tools.jackson.databind.json.JsonMapper;
 
 public class EsmfSdkTest {
    /**
@@ -129,13 +128,12 @@ public class EsmfSdkTest {
       System.out.println();
 
       // Create Jackson object mapper
-      final ObjectMapper mapper = new ObjectMapper();
-      mapper.registerModule( new JavaTimeModule() );
-      mapper.registerModule( new Jdk8Module() );
-      mapper.registerModule( new AspectModelJacksonModule() );
-      mapper.configure( JsonParser.Feature.INCLUDE_SOURCE_IN_LOCATION, true );
-      mapper.configure( SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false );
-      mapper.configure( SerializationFeature.FAIL_ON_EMPTY_BEANS, false );
+      final ObjectMapper mapper = JsonMapper.builder()
+            .addModule( new AspectModelJacksonModule() )
+            .enable( StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION )
+            .disable( DateTimeFeature.WRITE_DATES_AS_TIMESTAMPS )
+            .disable( SerializationFeature.FAIL_ON_EMPTY_BEANS )
+            .build();
 
       assertThatCode( () -> {
          // Parse JSON. We now have a type-safe representation of Aspect data.
@@ -207,7 +205,7 @@ public class EsmfSdkTest {
     * piece of data.
     */
    @Test
-   void deserializeAndUseData() throws JsonProcessingException {
+   void deserializeAndUseData() throws IOException {
       final String data = """
             {
               "partTypeInformation" : {
@@ -225,13 +223,12 @@ public class EsmfSdkTest {
             }
             """;
 
-      final ObjectMapper mapper = new ObjectMapper();
-      mapper.registerModule( new JavaTimeModule() );
-      mapper.registerModule( new Jdk8Module() );
-      mapper.registerModule( new AspectModelJacksonModule() );
-      mapper.configure( JsonParser.Feature.INCLUDE_SOURCE_IN_LOCATION, true );
-      mapper.configure( SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false );
-      mapper.configure( SerializationFeature.FAIL_ON_EMPTY_BEANS, false );
+      final ObjectMapper mapper = JsonMapper.builder()
+            .addModule( new AspectModelJacksonModule() )
+            .enable( StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION )
+            .disable( DateTimeFeature.WRITE_DATES_AS_TIMESTAMPS )
+            .disable( SerializationFeature.FAIL_ON_EMPTY_BEANS )
+            .build();
 
       // Parse the data into the type safe representation
       final PartAsPlanned partAsPlanned = mapper.readValue( data, PartAsPlanned.class );
