@@ -34,6 +34,7 @@ import org.junit.jupiter.api.Test;
 import tools.jackson.core.StreamReadFeature;
 import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.SerializationFeature;
+import tools.jackson.databind.cfg.DateTimeFeature;
 import tools.jackson.databind.json.JsonMapper;
 
 public class EsmfSdkTest {
@@ -129,8 +130,9 @@ public class EsmfSdkTest {
       // Create Jackson object mapper
       final ObjectMapper mapper = JsonMapper.builder()
             .addModule( new AspectModelJacksonModule() )
-            .configure( StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION, true )
-            .configure( SerializationFeature.FAIL_ON_EMPTY_BEANS, false )
+            .enable( StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION )
+            .disable( DateTimeFeature.WRITE_DATES_AS_TIMESTAMPS )
+            .disable( SerializationFeature.FAIL_ON_EMPTY_BEANS )
             .build();
 
       assertThatCode( () -> {
@@ -203,7 +205,7 @@ public class EsmfSdkTest {
     * piece of data.
     */
    @Test
-   void deserializeAndUseData() {
+   void deserializeAndUseData() throws IOException {
       final String data = """
             {
               "partTypeInformation" : {
@@ -223,8 +225,9 @@ public class EsmfSdkTest {
 
       final ObjectMapper mapper = JsonMapper.builder()
             .addModule( new AspectModelJacksonModule() )
-            .configure( StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION, true )
-            .configure( SerializationFeature.FAIL_ON_EMPTY_BEANS, false )
+            .enable( StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION )
+            .disable( DateTimeFeature.WRITE_DATES_AS_TIMESTAMPS )
+            .disable( SerializationFeature.FAIL_ON_EMPTY_BEANS )
             .build();
 
       // Parse the data into the type safe representation
