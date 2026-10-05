@@ -113,7 +113,7 @@ public class EsmfSdkTest {
     * Generating Sample JSON Payload</a> for more information.
     */
    @Test
-   void generateSampleJsonAndParseJson() throws IOException {
+   void generateSampleJsonAndParseJson() {
       // Load Aspect Model
       final AspectModelUrn aspectUrn = AspectModelUrn.fromUrn( "urn:samm:io.catenax.part_as_planned:2.0.0#PartAsPlanned" );
       final AspectModel aspectModel = new AspectModelLoader( FILE_SYSTEM_STRATEGY ).load( aspectUrn );
@@ -205,7 +205,7 @@ public class EsmfSdkTest {
     * piece of data.
     */
    @Test
-   void deserializeAndUseData() throws IOException {
+   void deserializeAndUseData() {
       final String data = """
             {
               "partTypeInformation" : {
